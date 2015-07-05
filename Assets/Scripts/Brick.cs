@@ -27,7 +27,7 @@ public class Brick : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D collider) {
-		AudioSource.PlayClipAtPoint (crack, transform.position);
+		AudioSource.PlayClipAtPoint (crack, transform.position, 0.5f);
 		if (isBreakable) {
 			HandleHits();
 		}
@@ -35,7 +35,6 @@ public class Brick : MonoBehaviour {
 
 	void HandleHits () {
 		timesHit++;
-		
 		int maxHits = hitSprites.Length + 1;
 		if (maxHits <= timesHit) {
 			breakableCount--;
@@ -52,9 +51,5 @@ public class Brick : MonoBehaviour {
 			this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
 		}
 	}
-
-	// TODO Remove this method once we can actually win
-	void SimulateWin () {
-		levelManager.LoadNextLevel();
-	}
+	
 }
